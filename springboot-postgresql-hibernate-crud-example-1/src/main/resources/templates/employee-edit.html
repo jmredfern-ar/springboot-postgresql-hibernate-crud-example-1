@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+ 
+	<head>
+		<meta charset="ISO-8859-1">
+		<title th:text="${add} ? 'Create an Employee' : 'Edit an Employee'"/>
+	</head>
+	<body>
+ 
+		<h1 th:text="${add} ? 'Create an Employee' : 'Edit an Employee'"/>
+		<br/><br/>
+		<form th:action="${add} ? @{/employees/add} : @{/employees/{employeeId}/edit(employeeId=${employee.id})}"
+		      th:object="${employee}" method="POST">
+	      <table border="0">
+	          <tr th:if="${employee.id}">
+	              <td>ID</td>
+	              <td>:</td>
+	              <td th:utext="${employee.id}">...</td>             
+	          </tr>
+               <tr>
+                   <td>First Name</td>
+                   <td>:</td>
+                   <td><input type="text" th:field="*{firstName}" /></td>              
+               </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{lastName}" /></td>              
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{email}" /></td>              
+                </tr>
+            </table>
+            <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
+		</form>
+		<br/>
+     
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />   
+        
+	</body>
+</html>

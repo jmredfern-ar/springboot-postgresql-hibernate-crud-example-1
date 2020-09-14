@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,8 +15,13 @@ public class Employee {
 
 	//MEMBER VARIABLES
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	@GeneratedValue(generator="employees_id_seq", strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(
+			name = "employees_id_seq",
+			sequenceName="employees_id_seq",
+			allocationSize=1
+			)
+	private Long id;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -39,7 +45,7 @@ public class Employee {
 	}
 
 	//GETTERS & SETTERS
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {
