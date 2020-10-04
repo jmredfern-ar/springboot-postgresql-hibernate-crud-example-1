@@ -20,12 +20,24 @@
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email</th>
+					<th>Pet</th>
 				</tr>
 				<tr th:each="employee : ${employees}">
 					<td th:utext="${employee.id}">...</td>
 					<td th:utext="${employee.firstName}">...</td>
 					<td th:utext="${employee.lastName}">...</td>
 					<td th:utext="${employee.email}">...</td>
+					<td>
+						<table>
+							<tr th:each="pet : ${employee.pets}">
+								<td th:utext="${pet.pet_id}">...</td>
+								<td th:utext="${pet.name}">...</td>
+								<td th:utext="${pet.species}">...</td>
+								<td th:utext="${pet.age}">...</td>
+								<td th:utext="${pet.bites}">...</td>
+							</tr>
+						</table>
+					</td>
 				</tr>
 			</table>
 		</div>

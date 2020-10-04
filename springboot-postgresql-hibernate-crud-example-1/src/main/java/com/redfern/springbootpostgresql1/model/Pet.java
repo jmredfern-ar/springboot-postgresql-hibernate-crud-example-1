@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -32,7 +34,11 @@ public class Pet {
 	
 	@Column(name="bites")
 	private boolean bites;
-
+	
+	@ManyToOne
+	@JoinColumn(name="employee_id")
+	private Employee employee;
+	
 	public Pet(String name, String species, int age, boolean bites) {
 		super();
 		this.name = name;
@@ -84,5 +90,13 @@ public class Pet {
 
 	public void setBites(boolean bites) {
 		this.bites = bites;
+	}
+	
+	public Employee getEmployee() {
+		return this.employee;
+	}
+	
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 }

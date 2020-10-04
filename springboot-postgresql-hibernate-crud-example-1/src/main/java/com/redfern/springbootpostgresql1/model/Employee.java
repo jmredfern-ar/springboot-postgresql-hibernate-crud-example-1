@@ -1,11 +1,17 @@
 package com.redfern.springbootpostgresql1.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,6 +37,9 @@ public class Employee {
 	
 	@Column(name="email")
 	private String email;
+	
+	@OneToMany(mappedBy="employee", cascade=CascadeType.ALL, fetch=FetchType.EAGER, targetEntity=Pet.class)
+	private List<Pet> pets;
 	
 	//CONSTRUCTORS
 	public Employee(String firstName, String lastName, String email) {
@@ -69,4 +78,21 @@ public class Employee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public List<Pet> getPets() {
+		if(this.pets == null) {
+			this.pets = new ArrayList<Pet>();
+		}
+		return this.pets;
+	}
+
+	public void setPets(List<Pet> pets) {
+		this.pets = pets;
+	}
+	
+
+//	public void addPet(Pet pet) {
+//		getPets().add(pet);
+//	}
+
 }

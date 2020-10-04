@@ -18,5 +18,4 @@ public class PetService {
 		List<Pet> pets = petRepository.findAll();
 		return pets;
 	}
-
 }
