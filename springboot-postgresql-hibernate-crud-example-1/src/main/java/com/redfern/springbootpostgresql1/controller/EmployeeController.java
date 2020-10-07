@@ -33,7 +33,18 @@ public class EmployeeController {
 	
 	@GetMapping(value="/employees/{employeeId}")
 	public String getEmployeeById(Model model, @PathVariable long employeeId) {		
-		return "employee-list";
+		
+		Employee employee = null;
+		
+		try {
+			employee = employeeService.findById(employeeId);
+		} catch(Exception e) {
+			String errorMessage = e.getMessage();
+			model.addAttribute("errorMessage", errorMessage);
+		}
+		
+		model.addAttribute("employee", employee);
+		return "employee";
 	}
 	
 	@GetMapping(value = {"/employees/add"})
@@ -43,6 +54,7 @@ public class EmployeeController {
 		model.addAttribute("employee", employee);
 		return "employee-edit";
 	}
+	
 	
 	@PostMapping(value="/employees/add")
 	public String addEmployee(Model model,
@@ -95,7 +107,6 @@ public class EmployeeController {
 			model.addAttribute("add", false);
 			return "employee-edit";
 		}
-	}
-	
+	}	
 }
 

@@ -51,6 +51,9 @@ public class EmployeeService {
 			if(!existsById(employee.getId())) {
 				throw new Exception("Cannot find Employee with id: " + employee.getId());
 			}
+			
+			employeeRepository.save(employee);
+			
 		} else {
 			Exception e = new Exception("Failed to save employee");
 			throw e;
