@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee Survey Answers</title>
+	</head>
+	<body>
+		<h1>Employee Survey Answers</h1>
+		<div>
+			<nobr>
+				<a th:href="@{/employees/add}">Add Employee</a>
+				<a th:href="@{/}">Back to Index</a>
+			</nobr>
+		</div>
+		<br/><br/>
+		<div>
+			<table border="1">
+				<tr>
+					<th>Employees Survey Answers Id</th>
+					<th>Answer Id</th>
+					<th>Emp Id</th>
+				</tr>
+				<tr th:each="employees_survey_answer : ${employees_survey_answers}"> <!--should match model name-->
+					<td th:utext="${employees_survey_answer.question_id}">...</td> <!--columns in table-->
+					<td th:utext="${employees_survey_answer.answer_id}">...</td>
+					<td th:utext="${employees_survey_answer.emp_id}">...</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

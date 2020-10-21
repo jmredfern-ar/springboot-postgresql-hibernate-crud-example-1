@@ -1,6 +1,7 @@
 package com.redfern.springbootpostgresql1.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,13 +12,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.redfern.springbootpostgresql1.model.Employee;
+import com.redfern.springbootpostgresql1.model.Project;
 import com.redfern.springbootpostgresql1.service.EmployeeService;
+import com.redfern.springbootpostgresql1.service.ProjectService;
 
 @Controller
 public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@Autowired
+	private ProjectService projectService;
 	
 	@GetMapping(value = {"/", "index"})
 	public String index(Model model) {
@@ -27,7 +33,9 @@ public class EmployeeController {
 	@GetMapping("/employees")
 	public String getEmployees(Model model) {
 		List<Employee> employees = employeeService.findAll();
+		List<Project> projects = projectService.findAll();
 		model.addAttribute("employees", employees);
+		model.addAttribute("projects", projects);
 		return "employee-list";
 	}
 	

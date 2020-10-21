@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Project List</title>
+	</head>
+	<body>
+		<h1>ProjectList!</h1>
+		<div>
+			<nobr>
+				<a th:href="@{/}">Back to Index</a>
+			</nobr>
+		</div>
+		<br/><br/>
+		<div>
+			<table border="1">
+				<tr>
+					<th>Id</th>
+					<th>Title</th>
+				</tr>
+				<tr th:each="project : ${projects}">
+					<td th:utext="${project.id}">...</td>
+					<td th:utext="${project.title}">...</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

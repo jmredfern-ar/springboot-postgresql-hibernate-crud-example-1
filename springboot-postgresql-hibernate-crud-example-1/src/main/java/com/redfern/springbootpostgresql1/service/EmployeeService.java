@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.redfern.springbootpostgresql1.model.Employee;
+import com.redfern.springbootpostgresql1.model.Project;
 import com.redfern.springbootpostgresql1.repository.EmployeeRepository;
 
 @Service
@@ -23,7 +24,7 @@ public class EmployeeService {
 		List<Employee> employees = employeeRepository.findAll();
 		return employees;
 	}
-	
+		
 	public Employee findById(Long id) throws Exception {
 		Employee employee = employeeRepository.findById(id).orElse(null);
 		if(employee == null) {
@@ -72,3 +73,5 @@ public class EmployeeService {
 		return employeeRepository.count();
 	}
 }
+
+
